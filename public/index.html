@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,12 +21,13 @@
             </div>
             <div class="col-md-6 main">
                 <form action="/sign_up" method="POST">
+                    <a href="/sign_in.html">sign In</a>
                     <h2>SignUp Form</h2>
                     <input type="text" class="box" id="name" name="name" placeholder="Name" required />
                     <br>
                     <input type="text" class="box" id="email" name="email" placeholder="Email" required />
                     <br>
-                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" required />
+                    <input type="text" class="box" id="phone" name="phone" placeholder="Mobile" required />
                     <br>
                     <input type="text" class="box" id="password" name="password" placeholder="Password" required />
                     <br>
@@ -37,6 +38,90 @@
             </div>
         </div>
     </div>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="sign_in.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="../home/home.html" id="log"><img id="lgo" src="../assets/logo.jpg" alt="logo"></a>
+            <a href="../home/home.html">TILLOTOMA FOUNDATION</a>
+        </div>
+    </nav>
+    <div class="wrapper" id="box">
+        <div class="title">Student Login</div>
+        <form action="/sign_in" method="POST">
+            <div class="field">
+                <input type="text" name="email" required />
+                <label>Email Address</label>
+            </div>
+            <div class="field">
+                <input type="password" name="password" required />
+                <label>Password</label>
+            </div>
+            <div class="content">
+                <div class="checkbox">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <div class="pass-link"><a href="#">Forgot password?</a></div>
+            </div>
+            <div class="field">
+                <input type="submit" name="submit" value="submit">
+            </div>
+            <div class="signup-link">Not a member? <a href="#" onclick="signupage()">Signup now</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="container" id="box">
+        <div class="title">Student Sign-up</div>
+        <div class="content">
+            <form id="reg-form">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Full Name:</span>
+                        <input type="text" placeholder="Enter your name:" name="name" id="reg-name" required />
+                    </div>
+                  
+                    <div class="input-box">
+                        <span class="details">Email:</span>
+                        <input type="email" placeholder="Enter your email address:" name="email" id='reg-email' required />
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Phone Number:</span>
+                        <input type="text" placeholder="1234567890" name="phone" id='reg-phone' required />
+                    </div>
+                  
+                    <div class="input-box">
+                        <span class="details">Password:</span>
+                        <input type="password" placeholder="Enter your password" name="password" id='reg-password' required />
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Submit" />
+                    <p id="policy">By signing up, you agree to our<a href="#">Terms of Use</a> and <a href="#">Privacy
+                            Policy.</a></p>
+                    <hr>
+                </div>
+                <div class="login-link">Already have an account? <a href="#" onclick="loginpage()">login</a>
+                </div>
+        </div>
+        </form>
+    </div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/script.js"></script>
 
 </body>
 
