@@ -17,15 +17,16 @@
     </nav>
     <div class="wrapper" id="box">
         <div class="title">Student Login</div>
-        <form action="/sign_in" method="POST">
+        <form id='login-form'>
             <div class="field">
-                <input type="text" name="email" required />
+                <input type="text" name="email" id="log-email" required />
                 <label>Email Address</label>
             </div>
             <div class="field">
-                <input type="password" name="password" required />
+                <input type="password" name="password" id="log-password" required />
                 <label>Password</label>
             </div>
+            <p class="err-message-login"></p>
             <div class="content">
                 <div class="checkbox">
                     <input type="checkbox" id="remember-me">
@@ -34,7 +35,7 @@
                 <div class="pass-link"><a href="#">Forgot password?</a></div>
             </div>
             <div class="field">
-                <input type="submit" name="submit" value="submit">
+                <input type="submit" value="submit">
             </div>
             <div class="signup-link">Not a member? <a href="#" onclick="signupage()">Signup now</a>
             </div>
@@ -65,6 +66,7 @@
                         <input type="password" placeholder="Enter your password" name="password" id='reg-password' required />
                     </div>
                 </div>
+                <p class="err-message-reg"></p>
                 <div class="button">
                     <input type="submit" value="Submit" />
                     <p id="policy">By signing up, you agree to our<a href="#">Terms of Use</a> and <a href="#">Privacy

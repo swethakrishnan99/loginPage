@@ -16,35 +16,39 @@ database.on('error', () => console.log("Error in Connecting to Database"));
 database.once('open', () => console.log("Connected to Database"))
 
 app.post("/sign_up", async (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const phone = req.body.phone;
-    const password = req.body.password;
-    const data = { name, email, phone, password };
-    const duplicate = await database.collection("users").findOne({ email }, (err, data) => {
-        if (err) throw err;
-        return data
-    });
-    if (duplicate) res.sendStatus(409)
-    database.collection("users").insertOne(data, (err, res) => {
-        if (err) throw err;
+    const { name, email, password, phone } = req.body;
+    if (!name || !password || !email || !phone) return res.status(400).json({ 'message': 'Username and password are required.' });
 
-    });
-    res.sendStatus(200)
+    // check for duplicate emails in the db
+    const duplicate = await database.collection("users").findOne({ email });
+    console.log(duplicate)
+    if (duplicate) return res.sendStatus(409); //Conflict 
+
+    try {
+        //insert to database
+        const result = await database.collection("users").insertOne({
+            name, email, phone,
+            password
+        }, (err, res) => {
+            if (err) throw err
+        });
+
+        return (res.redirect('success.html'))
+    } catch (err) {
+        res.status(500).json({ 'message': err.message });
+    }
 });
 
-app.post("/sign_in", (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    const data = { email, password };
-    const response = { user: false }
-    database.collection("users").findOne(data, (err, res) => {
-        if (err) throw err;
-        console.log(response);
-        (res === null) ? response.user = false : response.user = true;
-    });
+app.post("/sign_in", async (req, res) => {
+    const { email, password } = req.body;
+    const data = { email, password }
 
-    return (res.redirect('success.html'))
+    // find matching users
+    const match = await database.collection("users").findOne(data);
+    if (!match) return res.sendStatus(409);
+    else
+        return res.redirect('success.html')
+
 });
 
 
